@@ -19,8 +19,11 @@ int main()
     bool won = false;
     char num[100];
     time_t t;
+    FILE *fp;
 
     srand((unsigned)time(&t));
+
+    fp = fopen("persist.txt", "w+");
 
     do
     {
@@ -83,6 +86,9 @@ int main()
                 {
                     printf("Invalid input.\n");
                 }
+
+                fprintf(fp, "maxValue changed to %d\n", maxValue);
+
             } while (maxValue > 10 || maxValue < 1);
             break;
 
@@ -99,6 +105,8 @@ int main()
             break;
         }
     } while (menuSelection != 3);
+
+    fclose(fp);
 
     return (0);
 }
